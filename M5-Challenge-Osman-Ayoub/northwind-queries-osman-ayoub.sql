@@ -15,8 +15,7 @@ like '%Dell%'
 
 select *
 from northwind.orders
-where ship_state 
-In('Pennsylvania')
+where ship_city = 'Pennsylvania'
 
 -- List the first name and last name of all employees with last names that start with the letter W.
 
