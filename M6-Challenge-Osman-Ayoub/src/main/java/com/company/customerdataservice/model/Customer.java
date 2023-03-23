@@ -1,32 +1,35 @@
 package com.company.customerdataservice.model;
 
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "customers")
 public class Customer implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "first_name")
-    private String firstname;
-    @Column(name = "last_name")
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String email;
-    private String company;
     private String phone;
-    @Column(name = "address1")
     private String address1;
-    @Column(name = "address2")
     private String address2;
     private String city;
     private String state;
-    @Column(name = "postal_code")
     private String postalCode;
     private String country;
+    private String company;
+
+    public Customer() {
+    }
+
+
+    // getters and setters
 
     public Long getId() {
         return id;
@@ -36,20 +39,20 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -58,14 +61,6 @@ public class Customer implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
     }
 
     public String getPhone() {
@@ -124,17 +119,33 @@ public class Customer implements Serializable {
         this.country = country;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(id, customer.id) && Objects.equals(firstname, customer.firstname) && Objects.equals(lastname, customer.lastname) && Objects.equals(email, customer.email) && Objects.equals(company, customer.company) && Objects.equals(phone, customer.phone) && Objects.equals(address1, customer.address1) && Objects.equals(address2, customer.address2) && Objects.equals(city, customer.city) && Objects.equals(state, customer.state) && Objects.equals(postalCode, customer.postalCode) && Objects.equals(country, customer.country);
+    public String getCompany() {
+        return company;
     }
 
+    public void setCompany(String company) {
+        this.company = company;
+    }
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstname, lastname, email, company, phone, address1, address2, city, state, postalCode, country);
+        return Objects.hash(id, firstName, lastName, email, company, phone, address1, address2, city, state, postalCode, country);
     }
-}
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId, " +
+                "firstName," +
+                " lastName," +
+                " email," +
+                " company," +
+                " phone," +
+                " address1," +
+                " address2," +
+                " city," +
+                " state," +
+                " postalCode," +
+                " country" +
+                '}';
+    }
 
+}
